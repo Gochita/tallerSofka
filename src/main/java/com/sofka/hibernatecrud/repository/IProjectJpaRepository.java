@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface IProjectJpaRepository extends JpaRepository<Project, Long> {
 
 
+    Project findProjectById(Long projectId);
+
 }
