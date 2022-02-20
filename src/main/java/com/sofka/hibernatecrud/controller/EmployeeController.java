@@ -19,15 +19,34 @@ public class EmployeeController {
     public ArrayList<Employee> obtenerEmployees() {
         return employeeService.obtenerEmployees();
     }
-
-    @GetMapping(path="/employeeId")
+    // http://localhost:8080/employee/employeeId/{employeeId}
+    @GetMapping(path="/employeeId/{employeeId}")
     public Employee obtenerEmployeePorId(@PathVariable String employeeId) {
         return employeeService.obtenerPorId(employeeId);
     }
 
-    @PostMapping
+
+    // http://localhost:8080/employee/saveEmployee
+    @PostMapping(path="/saveEmployee")
     public Employee guardarEmployee(@RequestBody Employee employee) {
         return this.employeeService.guardarEmployee(employee);
+    }
+
+    // http://localhost:8080/employee/employeeDelete/{id}
+    @DeleteMapping("/employeeDelete/{id}")
+    public String deleteEmployeeById(@PathVariable("id") Long id){
+        boolean flag= this.employeeService.deleteEmployee(id);
+        if(flag){
+            return "Empleado "+ id+ " eliminado";
+        }else{
+            return "Empleado no eliminado";
+        }
+    }
+
+    // http://localhost:8080/employee/employeeUpdate/{id}
+    @PutMapping("/employeeUpdate/{id}")
+    public String updateEmployee(@PathVariable("id") Long id, @RequestBody Employee employee){
+        return employeeService.updateEmployee(employee,id);
     }
 
 

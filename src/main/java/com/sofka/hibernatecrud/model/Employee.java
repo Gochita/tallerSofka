@@ -8,6 +8,7 @@ import java.util.Objects;
 @Entity
 public class Employee {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,6 +21,9 @@ public class Employee {
 
     @Column(length = 10, nullable = false, unique = true)
     private String employeeId;
+
+    @Column(length = 10, nullable = true)
+    private String project;
 
 
     @ManyToOne(optional = false)
@@ -36,11 +40,12 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String employeeId, Role role) {
+    public Employee(String firstName, String lastName, String employeeId, Role role, List<Project> project) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.employeeId = employeeId;
         this.role= role;
+        this.projects= project;
     }
 
     public Long getId() {

@@ -19,13 +19,37 @@ public class RoleService {
         return (ArrayList<Role>) roleJpaRepository.findAll();
     }
 
-    public Optional<Role> obtenerRolPorId(Long roletId) {
-        return roleJpaRepository.findById(roletId);
+    public Optional<Role> obtenerRolPorId(Long roleId) {
+        return roleJpaRepository.findById(roleId);
     }
 
     public Role guardarRole(Role role) {
         return roleJpaRepository.save(role);
     }
+
+    public String updateRole(Role role, Long id){
+        Optional<Role> roleData= roleJpaRepository.findById(id);
+        if(roleData.isPresent()){
+            Role rol= roleData.get();
+            rol.setName(role.getName());
+            roleJpaRepository.save(rol);
+            return "Rol "+ id+ " actualizado";
+        }else{
+            return "Rol no actualizado";
+        }
+    }
+
+    public boolean deleteRoleById(Long id){
+        try{
+            roleJpaRepository.deleteById(id);
+            return true;
+        }catch(Exception e){
+            System.out.println(e.getCause());
+            return false;
+        }
+    }
+
+
 
 
 }

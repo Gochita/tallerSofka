@@ -4,7 +4,6 @@ import com.sofka.hibernatecrud.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.print.DocFlavor;
 import java.util.List;
 
 @Repository

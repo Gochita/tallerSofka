@@ -1,6 +1,5 @@
 package com.sofka.hibernatecrud.model;
 
-
 import javax.persistence.*;
 import java.util.Objects;
 
